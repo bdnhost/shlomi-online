@@ -1,0 +1,27 @@
+# WordPress core files
+wp-config.php
+.htaccess
+
+# Analysis and documentation files (temporary)
+DESIGN-ANALYSIS*.md
+DESIGN-ISSUES*.txt
+VISUAL-LAYOUT*.txt
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node modules (if using npm/yarn)
+node_modules/
+
+# Log files
+*.log
+error_log
+debug.log
