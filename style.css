@@ -5319,3 +5319,1009 @@ body {
     height: 250px !important;
   }
 }
+
+/* ========================================
+   תוכנית C - CSS מתקדם למערכת עסקים
+   ======================================== */
+
+/* תיקון תצוגת מפה - פריסה מלאה */
+#single-business-map,
+.single-business-map,
+.business-map,
+[id^="business-map"] {
+  width: 100% !important;
+  height: 450px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.business-map-section {
+  width: 100%;
+  margin: 40px 0;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.business-map-section h2 {
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+/* Header מתקדם לדף עסק */
+.single-business-full {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.business-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px;
+  margin-bottom: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.25);
+}
+
+.business-header-main {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.business-logo-large,
+.business-placeholder-logo-large {
+  width: 250px;
+  height: 250px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background: #fff;
+}
+
+.business-logo-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.business-placeholder-logo-large {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-size: 80px;
+  font-weight: bold;
+  color: white;
+}
+
+.business-header-info {
+  color: white;
+}
+
+.business-title-main {
+  font-size: 42px;
+  margin: 0 0 15px 0;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.business-badge-inline {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.business-badge-vip {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.business-badge-חדש,
+.business-badge-new {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.business-badge-מומלץ,
+.business-badge-recommended {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.business-badge-פופולרי,
+.business-badge-popular {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.business-category-tag {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.business-rating-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  font-size: 18px;
+}
+
+.stars-large {
+  font-size: 28px;
+}
+
+.rating-number {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.review-count {
+  opacity: 0.9;
+}
+
+.business-actions-main {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.btn-whatsapp-main,
+.btn-call-main,
+.btn-navigate-main {
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-whatsapp-main {
+  background: #25D366;
+  color: white;
+}
+
+.btn-call-main {
+  background: #3498db;
+  color: white;
+}
+
+.btn-navigate-main {
+  background: #34D5E7;
+  color: white;
+}
+
+.btn-whatsapp-main:hover,
+.btn-call-main:hover,
+.btn-navigate-main:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* קופונים בדף עסק */
+.business-coupons-section {
+  margin: 40px 0;
+  padding: 30px;
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(253, 203, 110, 0.3);
+}
+
+.business-coupons-section h2 {
+  margin: 0 0 25px 0;
+  color: #2d3436;
+  font-size: 28px;
+}
+
+.coupons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.coupon-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-right: 5px solid #e74c3c;
+  transition: all 0.3s ease;
+}
+
+.coupon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.coupon-discount {
+  font-size: 32px;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+.coupon-code {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+  text-align: center;
+  border: 2px dashed #e74c3c;
+}
+
+.coupon-code strong {
+  font-size: 20px;
+  color: #e74c3c;
+  letter-spacing: 2px;
+}
+
+.coupon-expiry {
+  color: #636e72;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.coupon-terms {
+  font-size: 13px;
+  color: #636e72;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #dfe6e9;
+}
+
+/* תיאור ותוכן העסק */
+.business-content-section {
+  margin: 40px 0;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.business-content-section h2 {
+  margin: 0 0 20px 0;
+  color: #2c3e50;
+  font-size: 24px;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.business-description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #34495e;
+}
+
+/* גלריית תמונות */
+.business-gallery-section {
+  margin: 40px 0;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.business-gallery-section h2 {
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+.business-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  aspect-ratio: 1;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* פרטי קשר ושעות */
+.business-contact-map-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.contact-info-box,
+.business-hours-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info-box h2,
+.business-hours-box h2 {
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+  font-size: 22px;
+  border-bottom: 3px solid #3498db;
+  padding-bottom: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-icon {
+  font-size: 24px;
+  min-width: 30px;
+}
+
+.contact-item strong {
+  min-width: 80px;
+  color: #2c3e50;
+}
+
+.contact-item a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* Social Links */
+.social-links {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 2px solid #ecf0f1;
+}
+
+.social-links h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #2c3e50;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.social-icon.facebook {
+  background: #3b5998;
+}
+
+.social-icon.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-icon.whatsapp {
+  background: #25D366;
+}
+
+.social-icon.tiktok {
+  background: #000;
+}
+
+.social-icon:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* שעות פעילות */
+.hours-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.hours-table tr {
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+}
+
+.hours-table tr:hover {
+  background: #e8f4f8;
+  transform: translateX(-5px);
+}
+
+.hours-table td {
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.hours-table .day-name {
+  font-weight: bold;
+  color: #2c3e50;
+  width: 100px;
+}
+
+.hours-table .day-hours {
+  color: #3498db;
+  font-weight: 600;
+}
+
+/* ביקורות */
+.business-reviews-section {
+  margin: 40px 0;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.business-reviews-section h2 {
+  margin: 0 0 30px 0;
+  color: #2c3e50;
+  font-size: 28px;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.review-item {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 12px;
+  border-right: 4px solid #3498db;
+  transition: all 0.3s ease;
+}
+
+.review-item:hover {
+  background: #e8f4f8;
+  transform: translateX(-5px);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 15px;
+}
+
+.reviewer-info {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.reviewer-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.verified-badge {
+  display: inline-block;
+  background: #27ae60;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.review-date {
+  color: #7f8c8d;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.review-rating {
+  font-size: 20px;
+}
+
+.review-content {
+  line-height: 1.7;
+  color: #2c3e50;
+}
+
+/* עסקים קשורים */
+.related-businesses-section {
+  margin: 40px 0;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
+
+.related-businesses-section h2 {
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+/* חיפוש מתקדם */
+.business-advanced-search {
+  margin: 30px 0;
+}
+
+.search-filters {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.search-filters h3 {
+  margin: 0 0 25px 0;
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+.search-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-field label {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+.search-field input,
+.search-field select {
+  padding: 12px 16px;
+  border: 2px solid #dfe6e9;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.search-field input:focus,
+.search-field select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.search-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn-search,
+.btn-reset {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-search {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-reset {
+  background: #ecf0f1;
+  color: #2c3e50;
+}
+
+.btn-search:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+}
+
+.btn-reset:hover {
+  background: #d5dbdb;
+}
+
+.search-results {
+  min-height: 200px;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+.no-results,
+.search-count {
+  text-align: center;
+  padding: 30px;
+  color: #7f8c8d;
+  font-size: 16px;
+}
+
+.search-count {
+  color: #27ae60;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+/* תצוגה ראשית */
+.business-homepage-dashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.business-stats-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 60px 40px;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.business-stats-hero h2 {
+  margin: 0 0 30px 0;
+  font-size: 42px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.stats-quick-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-number {
+  font-size: 48px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.stat-label {
+  font-size: 18px;
+  opacity: 0.95;
+}
+
+/* קטגוריות Showcase */
+.business-categories-showcase {
+  margin: 50px 0;
+}
+
+.business-categories-showcase h2 {
+  margin: 0 0 30px 0;
+  color: #2c3e50;
+  font-size: 32px;
+  text-align: center;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.category-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border-right: 4px solid #3498db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.category-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.category-info h3 {
+  margin: 0 0 5px 0;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+.category-count {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+/* קופונים Homepage */
+.homepage-coupons-section {
+  margin: 50px 0;
+  padding: 40px;
+  background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+  border-radius: 20px;
+}
+
+.homepage-coupons-section h2 {
+  margin: 0 0 30px 0;
+  color: #2d3436;
+  font-size: 32px;
+  text-align: center;
+}
+
+.coupons-slider {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.coupon-mini-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.coupon-mini-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.coupon-discount-large {
+  font-size: 36px;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+.coupon-business {
+  color: #636e72;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.btn-coupon-use {
+  display: inline-block;
+  padding: 10px 24px;
+  background: #e74c3c;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 12px;
+  transition: all 0.3s ease;
+}
+
+.btn-coupon-use:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+}
+
+/* Call to Action */
+.business-cta-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 60px 40px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  margin: 50px 0;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.business-cta-section h2 {
+  margin: 0 0 15px 0;
+  font-size: 36px;
+}
+
+.business-cta-section p {
+  font-size: 18px;
+  margin: 0 0 30px 0;
+  opacity: 0.95;
+}
+
+.btn-cta {
+  display: inline-block;
+  padding: 16px 40px;
+  background: white;
+  color: #667eea;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* רספונסיביות מתקדמת */
+@media (max-width: 991px) {
+  .business-header-main {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .business-logo-large,
+  .business-placeholder-logo-large {
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  .business-contact-map-section {
+    grid-template-columns: 1fr;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .business-header {
+    padding: 30px 20px;
+  }
+
+  .business-title-main {
+    font-size: 32px;
+  }
+
+  .business-actions-main {
+    flex-direction: column;
+  }
+
+  .btn-whatsapp-main,
+  .btn-call-main,
+  .btn-navigate-main {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .business-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .search-row {
+    grid-template-columns: 1fr;
+  }
+
+  .search-actions {
+    flex-direction: column;
+  }
+
+  .btn-search,
+  .btn-reset {
+    width: 100%;
+  }
+
+  .business-stats-hero h2 {
+    font-size: 28px;
+  }
+
+  .stat-number {
+    font-size: 36px;
+  }
+
+  .coupons-slider {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .business-title-main {
+    font-size: 24px;
+  }
+
+  .business-header {
+    padding: 20px 15px;
+  }
+
+  .business-logo-large,
+  .business-placeholder-logo-large {
+    max-width: 200px;
+    height: 200px;
+  }
+
+  .business-actions-main {
+    gap: 10px;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .business-gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
