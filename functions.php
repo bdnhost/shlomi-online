@@ -404,7 +404,70 @@ function shlomi_save_featured_image_option($post_id) {
 }
 
 // הפעלת המטא בוקס רק אם לא במצב עריכה מהירה
-if (!isset($_GET['action']) || $_GET['action'] !== 'edit') {
+$current_action = isset($_GET['action']) ? sanitize_text_field($_GET['action']) : '';
+if ($current_action !== 'edit') {
     add_action('add_meta_boxes', 'shlomi_hide_featured_image_option');
     add_action('save_post', 'shlomi_save_featured_image_option');
 }
+
+// פונקציה מותאמת אישית להצגת תגובות
+function shlomi_custom_comment($comment, $args, $depth)
+{
+    $GLOBALS['comment'] = $comment;
+    ?>
+    <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+        <article class="comment-body">
+            <div class="comment-author-avatar">
+                <?php echo get_avatar($comment, 60); ?>
+            </div>
+            <div class="comment-content-wrapper">
+                <div class="comment-meta">
+                    <span class="comment-author-name">
+                        <?php echo get_comment_author_link(); ?>
+                    </span>
+                    <span class="comment-metadata">
+                        <a href="<?php echo esc_url(get_comment_link($comment->comment_ID)); ?>">
+                            <?php printf('%s בשעה %s', get_comment_date('j F Y'), get_comment_time('H:i')); ?>
+                        </a>
+                    </span>
+                </div>
+
+                <?php if ($comment->comment_approved == '0'): ?>
+                    <p class="comment-awaiting-moderation">התגובה שלך ממתינה לאישור.</p>
+                <?php endif; ?>
+
+                <div class="comment-content">
+                    <?php comment_text(); ?>
+                </div>
+
+                <div class="comment-reply">
+                    <?php
+                    comment_reply_link(array_merge($args, array(
+                        'depth' => $depth,
+                        'max_depth' => $args['max_depth'],
+                        'reply_text' => 'השב',
+                    )));
+                    ?>
+                </div>
+            </div>
+        </article>
+    <?php
+}
+
+// הוספת lazy loading אוטומטי לכל התמונות
+function shlomi_add_lazy_loading($attr, $attachment, $size)
+{
+    // לא להוסיף lazy loading לתמונה הראשית (featured) בדף בודד
+    if (!is_singular() || !has_post_thumbnail(get_the_ID()) || $attachment->ID !== get_post_thumbnail_id(get_the_ID())) {
+        $attr['loading'] = 'lazy';
+    }
+    return $attr;
+}
+add_filter('wp_get_attachment_image_attributes', 'shlomi_add_lazy_loading', 10, 3);
+
+// הוספת srcset ו-sizes לתמונות לאופטימיזציה
+function shlomi_responsive_images()
+{
+    add_theme_support('responsive-embeds');
+}
+add_action('after_setup_theme', 'shlomi_responsive_images');

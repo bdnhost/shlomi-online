@@ -14,11 +14,18 @@ get_header(); ?>
             <div class="breaking-text">
                 <?php
                 // הצגת 8 הכותרות האחרונות מקטגוריית "עידכונים"
-                $breaking_query = new WP_Query(array(
-                    'category_name' => 'עידכונים',
+                $updates_cat = get_category_by_slug('עידכונים');
+                $breaking_args = array(
                     'posts_per_page' => 8,
                     'post_status' => 'publish'
-                ));
+                );
+
+                // אם קטגוריית "עידכונים" קיימת, הוסף אותה לשאילתה
+                if ($updates_cat) {
+                    $breaking_args['cat'] = $updates_cat->term_id;
+                }
+
+                $breaking_query = new WP_Query($breaking_args);
 
                 if ($breaking_query->have_posts()) {
                     while ($breaking_query->have_posts()) {
@@ -26,17 +33,17 @@ get_header(); ?>
                         ?>
                         <a href="<?php the_permalink(); ?>" class="breaking-item"
                             title="<?php echo esc_attr(get_the_title()); ?>">
-                            <span class="breaking-icon">🔴</span>
+                            <span class="breaking-icon" aria-hidden="true">🔴</span>
                             <?php the_title(); ?>
                         </a>
-                        <span class="breaking-separator">•</span>
+                        <span class="breaking-separator" aria-hidden="true">•</span>
                         <?php
                     }
                     wp_reset_postdata();
                 } else {
                     ?>
                     <a href="<?php echo home_url('/'); ?>" class="breaking-item">
-                        <span class="breaking-icon">📰</span>
+                        <span class="breaking-icon" aria-hidden="true">📰</span>
                         עקבו אחרי העדכונים האחרונים של שלומי אונליין
                     </a>
                     <?php
@@ -49,7 +56,7 @@ get_header(); ?>
 
 <div class="site-content">
     <div class="content-area">
-        <main class="main-content">
+        <main id="main-content" class="main-content">
 
             <?php
             // כתבה ראשית מודגשת

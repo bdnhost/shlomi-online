@@ -10,16 +10,19 @@ get_header();
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <a href="<?php echo home_url(); ?>">בית</a>
-        <?php if (get_the_category()): ?>
-            <?php $category = get_the_category()[0]; ?>
+        <?php
+        $categories = get_the_category();
+        if (!empty($categories)):
+            $category = $categories[0];
+        ?>
             <span> > </span>
-            <a href="<?php echo get_category_link($category->term_id); ?>"><?php echo $category->name; ?></a>
+            <a href="<?php echo get_category_link($category->term_id); ?>"><?php echo esc_html($category->name); ?></a>
         <?php endif; ?>
         <span> > </span>
         <span><?php the_title(); ?></span>
     </div>
     <div class="content-area">
-        <main class="main-content">
+        <main id="main-content" class="main-content">
             <?php
             while (have_posts()):
                 the_post();

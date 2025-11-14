@@ -10,6 +10,10 @@
 
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
+
+    <!-- Skip to content link for accessibility -->
+    <a class="skip-link screen-reader-text" href="#main-content">דלג לתוכן הראשי</a>
+
     <div id="page" class="site-wrapper">
 
         <!-- Top Bar -->
