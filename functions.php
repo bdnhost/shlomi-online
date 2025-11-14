@@ -2054,20 +2054,20 @@ function shlomi_business_search_ajax()
     $query = new WP_Query($args);
 
     ob_start();
-    if ($query->have_posts()):
+    if ($query->have_posts()) {
         echo '<div class="business-grid">';
-        while ($query->have_posts()):
+        while ($query->have_posts()) {
             $query->the_post();
             get_template_part('template-parts/content', 'business-card');
-        endwhile;
+        }
         echo '</div>';
 
         if ($query->found_posts > 0) {
             echo '<p class="search-count">נמצאו ' . $query->found_posts . ' עסקים</p>';
         }
-    else:
+    } else {
         echo '<p class="no-results">לא נמצאו עסקים התואמים את החיפוש.</p>';
-    endif;
+    }
 
     wp_reset_postdata();
     echo ob_get_clean();
