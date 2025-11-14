@@ -4599,9 +4599,9 @@ body {
 /* כרטיס עסק - Business Card */
 .business-card {
   background: white;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   position: relative;
   display: flex;
@@ -4611,7 +4611,7 @@ body {
 
 .business-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* תווית Badge */
@@ -4711,7 +4711,7 @@ body {
 
 .business-category {
   font-size: 13px;
-  color: #666;
+  color: var(--primary-red);
   margin-bottom: 15px;
   display: flex;
   align-items: center;
@@ -4822,7 +4822,7 @@ body {
 .business-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 25px;
   margin-bottom: 40px;
 }
 
@@ -5090,13 +5090,11 @@ body {
 .business-archive-header {
   text-align: center;
   margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 3px solid var(--primary-red);
 }
 
-.business-archive-header .page-title {
-  font-size: 42px;
-  color: var(--primary-blue);
+.business-archive-header .section-title {
+  /* ירושה מהסטיילינג הגלובלי של h2 */
+  text-align: center;
   margin-bottom: 15px;
 }
 
@@ -5136,7 +5134,7 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .business-archive-header .page-title {
+  .business-archive-header .section-title {
     font-size: 36px;
   }
 
@@ -5174,7 +5172,7 @@ body {
     font-size: 13px;
   }
 
-  .business-archive-header .page-title {
+  .business-archive-header .section-title {
     font-size: 28px;
   }
 
@@ -5269,7 +5267,7 @@ body {
     font-size: 12px;
   }
 
-  .business-archive-header .page-title {
+  .business-archive-header .section-title {
     font-size: 24px;
   }
 

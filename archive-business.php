@@ -12,7 +12,7 @@ get_header();
         <main id="main-content" class="main-content">
 
             <header class="page-header business-archive-header">
-                <h1 class="page-title">
+                <h2 class="section-title">
                     <?php
                     if (is_tax('business_category')):
                         echo '🏷️ ' . single_term_title('', false);
@@ -20,7 +20,7 @@ get_header();
                         echo '🏢 עסקים מקומיים';
                     endif;
                     ?>
-                </h1>
+                </h2>
 
                 <?php if (is_tax() && term_description()): ?>
                     <div class="taxonomy-description">
