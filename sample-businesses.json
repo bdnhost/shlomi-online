@@ -1,0 +1,159 @@
+{
+  "businesses": [
+    {
+      "title": "פיצה שלומי",
+      "category": "מסעדות",
+      "description": "פיצה טרייה ואיטלקית אמיתית עם מרכיבים איכותיים. פתוח 6 ימים בשבוע. משלוחים לכל האזור.",
+      "phone": "04-9801234",
+      "mobile": "054-5551234",
+      "email": "info@pizza-shlomi.co.il",
+      "website": "https://pizza-shlomi.co.il",
+      "address": {
+        "street": "רח' הראשונים 15",
+        "city": "שלומי",
+        "zip": "22832"
+      },
+      "coordinates": {
+        "lat": 33.0716,
+        "lng": 35.1547
+      },
+      "hours": {
+        "sunday": "11:00-23:00",
+        "monday": "11:00-23:00",
+        "tuesday": "11:00-23:00",
+        "wednesday": "11:00-23:00",
+        "thursday": "11:00-23:00",
+        "friday": "11:00-15:00",
+        "saturday": "סגור"
+      },
+      "social": {
+        "facebook": "https://facebook.com/pizzashlomi",
+        "instagram": "https://instagram.com/pizzashlomi",
+        "whatsapp": "972545551234"
+      },
+      "rating": 5,
+      "badge": "VIP"
+    },
+    {
+      "title": "סופר מרכז",
+      "category": "מכולת ומזון",
+      "description": "סופרמרקט מקומי עם מבחר רחב של מוצרים. מחלקת בשר, פירות וירקות טריים.",
+      "phone": "04-9801235",
+      "mobile": "054-5551235",
+      "email": "contact@super-merkaz.co.il",
+      "website": "https://super-merkaz.co.il",
+      "address": {
+        "street": "רח' הגליל 20",
+        "city": "שלומי",
+        "zip": "22832"
+      },
+      "coordinates": {
+        "lat": 33.0720,
+        "lng": 35.1550
+      },
+      "hours": {
+        "sunday": "07:00-22:00",
+        "monday": "07:00-22:00",
+        "tuesday": "07:00-22:00",
+        "wednesday": "07:00-22:00",
+        "thursday": "07:00-22:00",
+        "friday": "07:00-16:00",
+        "saturday": "סגור"
+      },
+      "social": {
+        "facebook": "https://facebook.com/supermerkaz",
+        "whatsapp": "972545551235"
+      },
+      "rating": 4,
+      "badge": "RECOMMENDED"
+    },
+    {
+      "title": "מרפאת בריאות שלומי",
+      "category": "רופאים ובריאות",
+      "description": "מרפאה משפחתית עם שירותי רופא משפחה, אחות, מעבדה ובית מרקחת.",
+      "phone": "04-9801236",
+      "mobile": "054-5551236",
+      "email": "info@clinic-shlomi.co.il",
+      "address": {
+        "street": "רח' הבריאות 5",
+        "city": "שלומי",
+        "zip": "22832"
+      },
+      "coordinates": {
+        "lat": 33.0712,
+        "lng": 35.1543
+      },
+      "hours": {
+        "sunday": "08:00-18:00",
+        "monday": "08:00-18:00",
+        "tuesday": "08:00-18:00",
+        "wednesday": "08:00-18:00",
+        "thursday": "08:00-18:00",
+        "friday": "08:00-13:00",
+        "saturday": "סגור"
+      },
+      "rating": 5,
+      "badge": "RECOMMENDED"
+    },
+    {
+      "title": "מוסך אבי",
+      "category": "שירותי רכב",
+      "description": "מוסך מורשה לכל סוגי הרכב. שירות מקצועי ומהיר.",
+      "phone": "04-9801237",
+      "mobile": "054-5551237",
+      "email": "avi@garage-avi.co.il",
+      "website": "https://garage-avi.co.il",
+      "address": {
+        "street": "רח' התעשייה 10",
+        "city": "שלומי",
+        "zip": "22832"
+      },
+      "coordinates": {
+        "lat": 33.0725,
+        "lng": 35.1555
+      },
+      "hours": {
+        "sunday": "08:00-17:00",
+        "monday": "08:00-17:00",
+        "tuesday": "08:00-17:00",
+        "wednesday": "08:00-17:00",
+        "thursday": "08:00-17:00",
+        "friday": "סגור",
+        "saturday": "סגור"
+      },
+      "social": {
+        "facebook": "https://facebook.com/garageavi",
+        "whatsapp": "972545551237"
+      },
+      "rating": 4,
+      "badge": "POPULAR"
+    },
+    {
+      "title": "בית ספר יסודי שלומי",
+      "category": "חינוך",
+      "description": "בית ספר יסודי עם מסורת של מצוינות חינוכית.",
+      "phone": "04-9801238",
+      "email": "school@shlomi-school.edu",
+      "website": "https://shlomi-school.edu",
+      "address": {
+        "street": "רח' החינוך 1",
+        "city": "שלומי",
+        "zip": "22832"
+      },
+      "coordinates": {
+        "lat": 33.0708,
+        "lng": 35.1540
+      },
+      "hours": {
+        "sunday": "08:00-14:00",
+        "monday": "08:00-14:00",
+        "tuesday": "08:00-14:00",
+        "wednesday": "08:00-14:00",
+        "thursday": "08:00-14:00",
+        "friday": "סגור",
+        "saturday": "סגור"
+      },
+      "rating": 5
+    }
+  ]
+}
