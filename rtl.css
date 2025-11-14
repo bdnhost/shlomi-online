@@ -1,0 +1,126 @@
+/*
+RTL Styles for Shlomi Online Theme
+תיקוני עיצוב לכיוון מימין לשמאל
+*/
+
+/* כיוון כללי */
+body.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+/* תיקון כיוון לטקסט */
+.rtl .site-title,
+.rtl .site-description,
+.rtl .main-nav,
+.rtl .widget-title,
+.rtl .entry-title,
+.rtl .entry-content {
+  text-align: right;
+}
+
+/* תיקון מיקום לוגו */
+.rtl .logo-area {
+  float: right;
+}
+
+/* תיקון תפריט ניווט */
+.rtl .main-nav li {
+  float: right;
+}
+
+.rtl .main-nav a {
+  text-align: right;
+}
+
+/* תיקון חיפוש */
+.rtl .search-box {
+  float: left;
+}
+
+.rtl .search-form input {
+  text-align: right;
+  padding-right: 15px;
+  padding-left: 40px;
+}
+
+/* תיקון sidebar */
+.rtl .sidebar {
+  float: left;
+}
+
+.rtl .content-area {
+  float: right;
+}
+
+/* תיקון רשימות */
+.rtl ul,
+.rtl ol {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+/* תיקון תמונות */
+.rtl .alignright {
+  float: left;
+  margin-left: 0;
+  margin-right: 20px;
+}
+
+.rtl .alignleft {
+  float: right;
+  margin-right: 0;
+  margin-left: 20px;
+}
+
+/* תיקון טפסים */
+.rtl input[type="text"],
+.rtl input[type="email"],
+.rtl input[type="search"],
+.rtl textarea {
+  text-align: right;
+}
+
+/* תיקון תגובות */
+.rtl .comment-list {
+  padding-right: 0;
+}
+
+.rtl .comment-list .children {
+  margin-right: 20px;
+  margin-left: 0;
+}
+
+/* תיקון כפתורים */
+.rtl .btn,
+.rtl button,
+.rtl input[type="submit"] {
+  text-align: center;
+}
+
+/* תיקון footer */
+.rtl .footer-widget {
+  text-align: right;
+}
+
+/* תיקון רשתות חברתיות */
+.rtl .social-icons {
+  float: left;
+}
+
+/* תיקון תאריך ומזג אויר */
+.rtl .date-weather {
+  float: right;
+}
+
+/* תיקון מובייל */
+@media (max-width: 767px) {
+  .rtl .mobile-menu-toggle {
+    float: left;
+  }
+
+  .rtl .logo-area {
+    float: none;
+    text-align: center;
+  }
+}

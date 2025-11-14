@@ -1,0 +1,40 @@
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - Plugin constructor called at 2025-10-19 18:13:01
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - WordPress version: 6.8.3
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - PHP version: 8.2.29
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - Plugin version: 3.3.0
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - Registering WordPress hooks
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - WordPress hooks registered successfully
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - Registering AJAX handlers
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - Registered generate_content handler
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - Registered check_api_keys handler
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - Registered ping handler
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - Registered test_deepseek handler
+[19-Oct-2025 15:13:01 UTC] AI Manager Pro - init() called
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - Plugin constructor called at 2025-10-19 18:14:01
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - WordPress version: 6.8.3
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - PHP version: 8.2.29
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - Plugin version: 3.3.0
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - Registering WordPress hooks
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - WordPress hooks registered successfully
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - Registering AJAX handlers
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - Registered generate_content handler
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - Registered check_api_keys handler
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - Registered ping handler
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - Registered test_deepseek handler
+[19-Oct-2025 15:14:01 UTC] AI Manager Pro - init() called
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - Plugin constructor called at 2025-10-19 18:15:37
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - WordPress version: 6.8.3
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - PHP version: 8.2.29
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - Plugin version: 3.3.0
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - Registering WordPress hooks
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - WordPress hooks registered successfully
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - Registering AJAX handlers
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - Registered generate_content handler
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - Registered check_api_keys handler
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - Registered ping handler
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - Registered test_deepseek handler
+[19-Oct-2025 15:15:37 UTC] AI Manager Pro - init() called
+[20-Oct-2025 07:52:53 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home4/shlomion/public_html/wp-content/themes/shlomi-online/index.php:7
+Stack trace:
+#0 {main}
+  thrown in /home4/shlomion/public_html/wp-content/themes/shlomi-online/index.php on line 7
