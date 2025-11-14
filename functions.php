@@ -471,3 +471,789 @@ function shlomi_responsive_images()
     add_theme_support('responsive-embeds');
 }
 add_action('after_setup_theme', 'shlomi_responsive_images');
+
+/* ========================================
+   מערכת עסקים מקומיים - Local Business Directory
+   ======================================== */
+
+// רישום Custom Post Type - עסק מקומי
+function shlomi_register_business_post_type()
+{
+    $labels = array(
+        'name' => 'עסקים מקומיים',
+        'singular_name' => 'עסק',
+        'menu_name' => 'עסקים מקומיים',
+        'add_new' => 'הוסף עסק',
+        'add_new_item' => 'הוסף עסק חדש',
+        'edit_item' => 'ערוך עסק',
+        'new_item' => 'עסק חדש',
+        'view_item' => 'צפה בעסק',
+        'search_items' => 'חפש עסקים',
+        'not_found' => 'לא נמצאו עסקים',
+        'not_found_in_trash' => 'לא נמצאו עסקים בפח',
+        'all_items' => 'כל העסקים',
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'business'),
+        'capability_type' => 'post',
+        'has_archive' => true,
+        'hierarchical' => false,
+        'menu_position' => 5,
+        'menu_icon' => 'dashicons-store',
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'show_in_rest' => true,
+    );
+
+    register_post_type('business', $args);
+}
+add_action('init', 'shlomi_register_business_post_type');
+
+// רישום Taxonomy - קטגוריות עסקים
+function shlomi_register_business_taxonomy()
+{
+    $labels = array(
+        'name' => 'קטגוריות עסקים',
+        'singular_name' => 'קטגוריית עסק',
+        'search_items' => 'חפש קטגוריות',
+        'all_items' => 'כל הקטגוריות',
+        'parent_item' => 'קטגוריה אב',
+        'parent_item_colon' => 'קטגוריה אב:',
+        'edit_item' => 'ערוך קטגוריה',
+        'update_item' => 'עדכן קטגוריה',
+        'add_new_item' => 'הוסף קטגוריה חדשה',
+        'new_item_name' => 'שם קטגוריה חדשה',
+        'menu_name' => 'קטגוריות',
+    );
+
+    $args = array(
+        'hierarchical' => true,
+        'labels' => $labels,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'business-category'),
+        'show_in_rest' => true,
+    );
+
+    register_taxonomy('business_category', array('business'), $args);
+}
+add_action('init', 'shlomi_register_business_taxonomy');
+
+// הוספת Meta Boxes לעסקים
+function shlomi_add_business_meta_boxes()
+{
+    add_meta_box(
+        'business_contact_info',
+        '📞 פרטי יצירת קשר',
+        'shlomi_business_contact_meta_box',
+        'business',
+        'normal',
+        'high'
+    );
+
+    add_meta_box(
+        'business_location_info',
+        '📍 מיקום וכתובת',
+        'shlomi_business_location_meta_box',
+        'business',
+        'normal',
+        'high'
+    );
+
+    add_meta_box(
+        'business_hours_info',
+        '⏰ שעות פעילות',
+        'shlomi_business_hours_meta_box',
+        'business',
+        'normal',
+        'default'
+    );
+
+    add_meta_box(
+        'business_social_info',
+        '📱 רשתות חברתיות',
+        'shlomi_business_social_meta_box',
+        'business',
+        'side',
+        'default'
+    );
+
+    add_meta_box(
+        'business_extra_info',
+        '⭐ מידע נוסף',
+        'shlomi_business_extra_meta_box',
+        'business',
+        'side',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'shlomi_add_business_meta_boxes');
+
+// Meta Box - פרטי יצירת קשר
+function shlomi_business_contact_meta_box($post)
+{
+    wp_nonce_field('shlomi_business_meta_nonce', 'shlomi_business_nonce');
+
+    $phone = get_post_meta($post->ID, '_business_phone', true);
+    $mobile = get_post_meta($post->ID, '_business_mobile', true);
+    $email = get_post_meta($post->ID, '_business_email', true);
+    $website = get_post_meta($post->ID, '_business_website', true);
+    ?>
+    <table class="form-table">
+        <tr>
+            <th><label for="business_phone">טלפון קווי</label></th>
+            <td><input type="tel" id="business_phone" name="business_phone" value="<?php echo esc_attr($phone); ?>" class="regular-text" placeholder="04-1234567"></td>
+        </tr>
+        <tr>
+            <th><label for="business_mobile">נייד</label></th>
+            <td><input type="tel" id="business_mobile" name="business_mobile" value="<?php echo esc_attr($mobile); ?>" class="regular-text" placeholder="054-1234567"></td>
+        </tr>
+        <tr>
+            <th><label for="business_email">אימייל</label></th>
+            <td><input type="email" id="business_email" name="business_email" value="<?php echo esc_attr($email); ?>" class="regular-text" placeholder="info@business.com"></td>
+        </tr>
+        <tr>
+            <th><label for="business_website">אתר אינטרנט</label></th>
+            <td><input type="url" id="business_website" name="business_website" value="<?php echo esc_attr($website); ?>" class="regular-text" placeholder="https://example.com"></td>
+        </tr>
+    </table>
+    <?php
+}
+
+// Meta Box - מיקום וכתובת
+function shlomi_business_location_meta_box($post)
+{
+    $address = get_post_meta($post->ID, '_business_address', true);
+    $city = get_post_meta($post->ID, '_business_city', true);
+    $zip = get_post_meta($post->ID, '_business_zip', true);
+    $lat = get_post_meta($post->ID, '_business_lat', true);
+    $lng = get_post_meta($post->ID, '_business_lng', true);
+    ?>
+    <table class="form-table">
+        <tr>
+            <th><label for="business_address">כתובת רחוב</label></th>
+            <td><input type="text" id="business_address" name="business_address" value="<?php echo esc_attr($address); ?>" class="regular-text" placeholder="רח' הראשונים 5"></td>
+        </tr>
+        <tr>
+            <th><label for="business_city">עיר</label></th>
+            <td><input type="text" id="business_city" name="business_city" value="<?php echo esc_attr($city); ?>" class="regular-text" placeholder="שלומי"></td>
+        </tr>
+        <tr>
+            <th><label for="business_zip">מיקוד</label></th>
+            <td><input type="text" id="business_zip" name="business_zip" value="<?php echo esc_attr($zip); ?>" class="regular-text" placeholder="22832"></td>
+        </tr>
+        <tr>
+            <th colspan="2"><strong>קואורדינטות GPS (למפה)</strong></th>
+        </tr>
+        <tr>
+            <th><label for="business_lat">Latitude (רוחב)</label></th>
+            <td><input type="text" id="business_lat" name="business_lat" value="<?php echo esc_attr($lat); ?>" class="regular-text" placeholder="33.0716"></td>
+        </tr>
+        <tr>
+            <th><label for="business_lng">Longitude (אורך)</label></th>
+            <td><input type="text" id="business_lng" name="business_lng" value="<?php echo esc_attr($lng); ?>" class="regular-text" placeholder="35.1547"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p class="description">
+                    💡 <strong>טיפ:</strong> כדי למצוא קואורדינטות, פתח <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>,
+                    חפש את הכתובת, לחץ ימני על המיקום ובחר "Show address" - הקואורדינטות יופיעו בכתובת URL.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+// Meta Box - שעות פעילות
+function shlomi_business_hours_meta_box($post)
+{
+    $days = array(
+        'sunday' => 'ראשון',
+        'monday' => 'שני',
+        'tuesday' => 'שלישי',
+        'wednesday' => 'רביעי',
+        'thursday' => 'חמישי',
+        'friday' => 'שישי',
+        'saturday' => 'שבת'
+    );
+    ?>
+    <table class="form-table">
+        <?php foreach ($days as $day_key => $day_name):
+            $hours = get_post_meta($post->ID, '_business_hours_' . $day_key, true);
+        ?>
+        <tr>
+            <th><label for="business_hours_<?php echo $day_key; ?>"><?php echo $day_name; ?></label></th>
+            <td>
+                <input type="text" id="business_hours_<?php echo $day_key; ?>"
+                       name="business_hours_<?php echo $day_key; ?>"
+                       value="<?php echo esc_attr($hours); ?>"
+                       class="regular-text"
+                       placeholder="09:00-18:00 או 'סגור'">
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <p class="description">השאר ריק אם העסק פתוח 24/7, או כתוב "סגור" ליום סגור.</p>
+    <?php
+}
+
+// Meta Box - רשתות חברתיות
+function shlomi_business_social_meta_box($post)
+{
+    $facebook = get_post_meta($post->ID, '_business_facebook', true);
+    $instagram = get_post_meta($post->ID, '_business_instagram', true);
+    $whatsapp = get_post_meta($post->ID, '_business_whatsapp', true);
+    ?>
+    <p>
+        <label for="business_facebook"><strong>📘 פייסבוק</strong></label>
+        <input type="url" id="business_facebook" name="business_facebook" value="<?php echo esc_attr($facebook); ?>" class="widefat" placeholder="https://facebook.com/...">
+    </p>
+    <p>
+        <label for="business_instagram"><strong>📷 אינסטגרם</strong></label>
+        <input type="url" id="business_instagram" name="business_instagram" value="<?php echo esc_attr($instagram); ?>" class="widefat" placeholder="https://instagram.com/...">
+    </p>
+    <p>
+        <label for="business_whatsapp"><strong>💬 WhatsApp</strong></label>
+        <input type="tel" id="business_whatsapp" name="business_whatsapp" value="<?php echo esc_attr($whatsapp); ?>" class="widefat" placeholder="972541234567">
+        <span class="description">מספר בפורמט בינלאומי (ללא +)</span>
+    </p>
+    <?php
+}
+
+// Meta Box - מידע נוסף
+function shlomi_business_extra_meta_box($post)
+{
+    $rating = get_post_meta($post->ID, '_business_rating', true);
+    $badge = get_post_meta($post->ID, '_business_badge', true);
+    $featured = get_post_meta($post->ID, '_business_featured', true);
+    ?>
+    <p>
+        <label for="business_rating"><strong>⭐ דירוג</strong></label>
+        <select id="business_rating" name="business_rating" class="widefat">
+            <option value="">ללא דירוג</option>
+            <?php for ($i = 1; $i <= 5; $i++): ?>
+            <option value="<?php echo $i; ?>" <?php selected($rating, $i); ?>>
+                <?php echo str_repeat('⭐', $i); ?>
+            </option>
+            <?php endfor; ?>
+        </select>
+    </p>
+    <p>
+        <label for="business_badge"><strong>🏷️ תווית מיוחדת</strong></label>
+        <select id="business_badge" name="business_badge" class="widefat">
+            <option value="">ללא תווית</option>
+            <option value="VIP" <?php selected($badge, 'VIP'); ?>>VIP</option>
+            <option value="NEW" <?php selected($badge, 'NEW'); ?>>חדש</option>
+            <option value="RECOMMENDED" <?php selected($badge, 'RECOMMENDED'); ?>>מומלץ</option>
+            <option value="POPULAR" <?php selected($badge, 'POPULAR'); ?>>פופולרי</option>
+        </select>
+    </p>
+    <p>
+        <label>
+            <input type="checkbox" name="business_featured" value="1" <?php checked($featured, '1'); ?>>
+            <strong>📌 עסק מודגש (יופיע למעלה)</strong>
+        </label>
+    </p>
+    <?php
+}
+
+// שמירת Meta Data
+function shlomi_save_business_meta($post_id)
+{
+    // בדיקות אבטחה
+    if (!isset($_POST['shlomi_business_nonce']) ||
+        !wp_verify_nonce($_POST['shlomi_business_nonce'], 'shlomi_business_meta_nonce')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // שדות ליצירת קשר
+    $contact_fields = array('phone', 'mobile', 'email', 'website');
+    foreach ($contact_fields as $field) {
+        if (isset($_POST['business_' . $field])) {
+            update_post_meta($post_id, '_business_' . $field, sanitize_text_field($_POST['business_' . $field]));
+        }
+    }
+
+    // שדות מיקום
+    $location_fields = array('address', 'city', 'zip', 'lat', 'lng');
+    foreach ($location_fields as $field) {
+        if (isset($_POST['business_' . $field])) {
+            update_post_meta($post_id, '_business_' . $field, sanitize_text_field($_POST['business_' . $field]));
+        }
+    }
+
+    // שעות פעילות
+    $days = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+    foreach ($days as $day) {
+        if (isset($_POST['business_hours_' . $day])) {
+            update_post_meta($post_id, '_business_hours_' . $day, sanitize_text_field($_POST['business_hours_' . $day]));
+        }
+    }
+
+    // רשתות חברתיות
+    $social_fields = array('facebook', 'instagram', 'whatsapp');
+    foreach ($social_fields as $field) {
+        if (isset($_POST['business_' . $field])) {
+            update_post_meta($post_id, '_business_' . $field, sanitize_text_field($_POST['business_' . $field]));
+        }
+    }
+
+    // מידע נוסף
+    if (isset($_POST['business_rating'])) {
+        update_post_meta($post_id, '_business_rating', sanitize_text_field($_POST['business_rating']));
+    }
+    if (isset($_POST['business_badge'])) {
+        update_post_meta($post_id, '_business_badge', sanitize_text_field($_POST['business_badge']));
+    }
+
+    $featured = isset($_POST['business_featured']) ? '1' : '0';
+    update_post_meta($post_id, '_business_featured', $featured);
+}
+add_action('save_post_business', 'shlomi_save_business_meta');
+
+// טעינת Leaflet.js (OpenStreetMap) ו-CSS לעסקים
+function shlomi_business_scripts()
+{
+    // טעינה רק בדפי עסקים או בדפים שמכילים shortcode
+    if (is_singular('business') || is_post_type_archive('business') || is_tax('business_category') ||
+        (is_page() && (has_shortcode(get_post()->post_content, 'business_list') ||
+                       has_shortcode(get_post()->post_content, 'business_map')))) {
+
+        // Leaflet CSS
+        wp_enqueue_style(
+            'leaflet-css',
+            'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
+            array(),
+            '1.9.4'
+        );
+
+        // Leaflet JS
+        wp_enqueue_script(
+            'leaflet-js',
+            'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
+            array(),
+            '1.9.4',
+            true
+        );
+
+        // Business Map Script
+        wp_enqueue_script(
+            'shlomi-business-map',
+            get_template_directory_uri() . '/js/business-map.js',
+            array('jquery', 'leaflet-js'),
+            '1.0',
+            true
+        );
+    }
+}
+add_action('wp_enqueue_scripts', 'shlomi_business_scripts');
+
+// ייבוא עסקים מ-JSON
+function shlomi_import_businesses_from_json($json_file_path)
+{
+    if (!file_exists($json_file_path)) {
+        return new WP_Error('file_not_found', 'קובץ JSON לא נמצא');
+    }
+
+    $json_content = file_get_contents($json_file_path);
+    $data = json_decode($json_content, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        return new WP_Error('json_error', 'שגיאה בפענוח JSON: ' . json_last_error_msg());
+    }
+
+    if (!isset($data['businesses']) || !is_array($data['businesses'])) {
+        return new WP_Error('invalid_format', 'פורמט JSON לא תקין - חסר מערך businesses');
+    }
+
+    $imported = 0;
+    $errors = array();
+
+    foreach ($data['businesses'] as $business_data) {
+        // ולידציה בסיסית
+        if (empty($business_data['title'])) {
+            $errors[] = 'עסק ללא כותרת דולג';
+            continue;
+        }
+
+        // יצירת פוסט חדש
+        $post_data = array(
+            'post_title' => sanitize_text_field($business_data['title']),
+            'post_content' => isset($business_data['description']) ? wp_kses_post($business_data['description']) : '',
+            'post_status' => 'publish',
+            'post_type' => 'business',
+        );
+
+        $post_id = wp_insert_post($post_data);
+
+        if (is_wp_error($post_id)) {
+            $errors[] = 'שגיאה ביצירת עסק: ' . $business_data['title'];
+            continue;
+        }
+
+        // הוספת קטגוריה
+        if (!empty($business_data['category'])) {
+            $term = term_exists($business_data['category'], 'business_category');
+            if (!$term) {
+                $term = wp_insert_term($business_data['category'], 'business_category');
+            }
+            if (!is_wp_error($term)) {
+                wp_set_post_terms($post_id, array($term['term_id']), 'business_category');
+            }
+        }
+
+        // פרטי קשר
+        if (!empty($business_data['phone'])) {
+            update_post_meta($post_id, '_business_phone', sanitize_text_field($business_data['phone']));
+        }
+        if (!empty($business_data['mobile'])) {
+            update_post_meta($post_id, '_business_mobile', sanitize_text_field($business_data['mobile']));
+        }
+        if (!empty($business_data['email'])) {
+            update_post_meta($post_id, '_business_email', sanitize_email($business_data['email']));
+        }
+        if (!empty($business_data['website'])) {
+            update_post_meta($post_id, '_business_website', esc_url_raw($business_data['website']));
+        }
+
+        // כתובת
+        if (!empty($business_data['address'])) {
+            if (is_array($business_data['address'])) {
+                update_post_meta($post_id, '_business_address', sanitize_text_field($business_data['address']['street'] ?? ''));
+                update_post_meta($post_id, '_business_city', sanitize_text_field($business_data['address']['city'] ?? ''));
+                update_post_meta($post_id, '_business_zip', sanitize_text_field($business_data['address']['zip'] ?? ''));
+            }
+        }
+
+        // קואורדינטות
+        if (!empty($business_data['coordinates'])) {
+            update_post_meta($post_id, '_business_lat', sanitize_text_field($business_data['coordinates']['lat'] ?? ''));
+            update_post_meta($post_id, '_business_lng', sanitize_text_field($business_data['coordinates']['lng'] ?? ''));
+        }
+
+        // שעות פעילות
+        if (!empty($business_data['hours']) && is_array($business_data['hours'])) {
+            foreach ($business_data['hours'] as $day => $hours) {
+                update_post_meta($post_id, '_business_hours_' . $day, sanitize_text_field($hours));
+            }
+        }
+
+        // רשתות חברתיות
+        if (!empty($business_data['social'])) {
+            if (!empty($business_data['social']['facebook'])) {
+                update_post_meta($post_id, '_business_facebook', esc_url_raw($business_data['social']['facebook']));
+            }
+            if (!empty($business_data['social']['instagram'])) {
+                update_post_meta($post_id, '_business_instagram', esc_url_raw($business_data['social']['instagram']));
+            }
+            if (!empty($business_data['social']['whatsapp'])) {
+                update_post_meta($post_id, '_business_whatsapp', sanitize_text_field($business_data['social']['whatsapp']));
+            }
+        }
+
+        // מידע נוסף
+        if (!empty($business_data['rating'])) {
+            update_post_meta($post_id, '_business_rating', intval($business_data['rating']));
+        }
+        if (!empty($business_data['badge'])) {
+            update_post_meta($post_id, '_business_badge', sanitize_text_field($business_data['badge']));
+        }
+
+        // תמונת לוגו
+        if (!empty($business_data['logo'])) {
+            shlomi_set_business_thumbnail_from_url($post_id, $business_data['logo']);
+        }
+
+        $imported++;
+    }
+
+    return array(
+        'success' => true,
+        'imported' => $imported,
+        'errors' => $errors
+    );
+}
+
+// פונקציה עוזרת להוספת תמונה מ-URL
+function shlomi_set_business_thumbnail_from_url($post_id, $image_url)
+{
+    require_once(ABSPATH . 'wp-admin/includes/file.php');
+    require_once(ABSPATH . 'wp-admin/includes/media.php');
+    require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+    $tmp = download_url($image_url);
+    if (is_wp_error($tmp)) {
+        return false;
+    }
+
+    $file_array = array(
+        'name' => basename($image_url),
+        'tmp_name' => $tmp
+    );
+
+    $id = media_handle_sideload($file_array, $post_id);
+
+    if (is_wp_error($id)) {
+        @unlink($file_array['tmp_name']);
+        return false;
+    }
+
+    set_post_thumbnail($post_id, $id);
+    return true;
+}
+
+// Admin Page לייבוא JSON
+function shlomi_business_import_menu()
+{
+    add_submenu_page(
+        'edit.php?post_type=business',
+        'ייבוא עסקים מ-JSON',
+        'ייבוא JSON',
+        'manage_options',
+        'business-import-json',
+        'shlomi_business_import_page'
+    );
+}
+add_action('admin_menu', 'shlomi_business_import_menu');
+
+// עמוד הייבוא
+function shlomi_business_import_page()
+{
+    ?>
+    <div class="wrap">
+        <h1>ייבוא עסקים מקומיים מ-JSON</h1>
+
+        <?php
+        if (isset($_POST['import_json']) && check_admin_referer('import_business_json')) {
+            if (!empty($_FILES['json_file']['tmp_name'])) {
+                $result = shlomi_import_businesses_from_json($_FILES['json_file']['tmp_name']);
+
+                if (is_wp_error($result)) {
+                    echo '<div class="notice notice-error"><p>' . $result->get_error_message() . '</p></div>';
+                } else {
+                    echo '<div class="notice notice-success"><p>';
+                    echo 'ייובאו בהצלחה ' . $result['imported'] . ' עסקים!';
+                    if (!empty($result['errors'])) {
+                        echo '<br>שגיאות: <ul>';
+                        foreach ($result['errors'] as $error) {
+                            echo '<li>' . esc_html($error) . '</li>';
+                        }
+                        echo '</ul>';
+                    }
+                    echo '</p></div>';
+                }
+            }
+        }
+        ?>
+
+        <div class="card">
+            <h2>העלה קובץ JSON</h2>
+            <form method="post" enctype="multipart/form-data">
+                <?php wp_nonce_field('import_business_json'); ?>
+                <table class="form-table">
+                    <tr>
+                        <th><label for="json_file">בחר קובץ JSON</label></th>
+                        <td>
+                            <input type="file" name="json_file" id="json_file" accept=".json" required>
+                            <p class="description">העלה קובץ JSON בפורמט המתאים</p>
+                        </td>
+                    </tr>
+                </table>
+                <p class="submit">
+                    <input type="submit" name="import_json" class="button button-primary" value="ייבא עסקים">
+                </p>
+            </form>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <h2>📋 פורמט JSON נדרש</h2>
+            <p>הקובץ צריך להיות בפורמט הבא:</p>
+            <pre style="background: #f5f5f5; padding: 15px; direction: ltr; text-align: left; overflow-x: auto;">{
+  "businesses": [
+    {
+      "title": "שם העסק",
+      "category": "קטגוריה",
+      "description": "תיאור העסק",
+      "phone": "04-1234567",
+      "mobile": "054-1234567",
+      "email": "info@business.com",
+      "website": "https://example.com",
+      "address": {
+        "street": "רח' הראשונים 15",
+        "city": "שלומי",
+        "zip": "22832"
+      },
+      "coordinates": {
+        "lat": 33.0716,
+        "lng": 35.1547
+      },
+      "hours": {
+        "sunday": "09:00-18:00",
+        "monday": "09:00-18:00",
+        "tuesday": "09:00-18:00",
+        "wednesday": "09:00-18:00",
+        "thursday": "09:00-18:00",
+        "friday": "09:00-15:00",
+        "saturday": "סגור"
+      },
+      "social": {
+        "facebook": "https://facebook.com/business",
+        "instagram": "https://instagram.com/business",
+        "whatsapp": "972541234567"
+      },
+      "rating": 5,
+      "badge": "VIP",
+      "logo": "https://example.com/logo.jpg"
+    }
+  ]
+}</pre>
+            <p><a href="<?php echo get_template_directory_uri(); ?>/sample-businesses.json" class="button" download>💾 הורד קובץ דוגמה</a></p>
+        </div>
+    </div>
+    <?php
+}
+
+// Shortcode - רשימת עסקים
+function shlomi_business_list_shortcode($atts)
+{
+    $atts = shortcode_atts(array(
+        'category' => '',
+        'limit' => 12,
+        'view' => 'grid', // grid or list
+        'featured' => false
+    ), $atts);
+
+    $args = array(
+        'post_type' => 'business',
+        'posts_per_page' => intval($atts['limit']),
+        'orderby' => 'date',
+        'order' => 'DESC'
+    );
+
+    if (!empty($atts['category'])) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'business_category',
+                'field' => 'slug',
+                'terms' => $atts['category']
+            )
+        );
+    }
+
+    if ($atts['featured']) {
+        $args['meta_query'] = array(
+            array(
+                'key' => '_business_featured',
+                'value' => '1'
+            )
+        );
+    }
+
+    $businesses = new WP_Query($args);
+
+    ob_start();
+    ?>
+    <div class="business-directory business-<?php echo esc_attr($atts['view']); ?>-view">
+        <?php if ($businesses->have_posts()): ?>
+            <div class="business-grid">
+                <?php while ($businesses->have_posts()): $businesses->the_post(); ?>
+                    <?php get_template_part('template-parts/content', 'business-card'); ?>
+                <?php endwhile; ?>
+            </div>
+        <?php else: ?>
+            <p class="no-businesses">לא נמצאו עסקים.</p>
+        <?php endif; ?>
+    </div>
+    <?php
+    wp_reset_postdata();
+    return ob_get_clean();
+}
+add_shortcode('business_list', 'shlomi_business_list_shortcode');
+
+// Shortcode - מפת עסקים
+function shlomi_business_map_shortcode($atts)
+{
+    $atts = shortcode_atts(array(
+        'height' => '500px',
+        'zoom' => 13,
+        'center_lat' => 33.0716,
+        'center_lng' => 35.1547
+    ), $atts);
+
+    $businesses = new WP_Query(array(
+        'post_type' => 'business',
+        'posts_per_page' => -1,
+        'meta_query' => array(
+            array(
+                'key' => '_business_lat',
+                'compare' => 'EXISTS'
+            ),
+            array(
+                'key' => '_business_lng',
+                'compare' => 'EXISTS'
+            )
+        )
+    ));
+
+    $markers = array();
+    if ($businesses->have_posts()) {
+        while ($businesses->have_posts()) {
+            $businesses->the_post();
+            $lat = get_post_meta(get_the_ID(), '_business_lat', true);
+            $lng = get_post_meta(get_the_ID(), '_business_lng', true);
+
+            if ($lat && $lng) {
+                $markers[] = array(
+                    'lat' => floatval($lat),
+                    'lng' => floatval($lng),
+                    'title' => get_the_title(),
+                    'url' => get_permalink()
+                );
+            }
+        }
+        wp_reset_postdata();
+    }
+
+    $map_id = 'business-map-' . uniqid();
+
+    ob_start();
+    ?>
+    <div id="<?php echo esc_attr($map_id); ?>" class="business-map" style="height: <?php echo esc_attr($atts['height']); ?>; width: 100%; border-radius: 10px;"></div>
+    <script>
+    jQuery(document).ready(function($) {
+        if (typeof L !== 'undefined') {
+            var map = L.map('<?php echo $map_id; ?>').setView([<?php echo $atts['center_lat']; ?>, <?php echo $atts['center_lng']; ?>], <?php echo $atts['zoom']; ?>);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+
+            var markers = <?php echo json_encode($markers); ?>;
+            markers.forEach(function(markerData) {
+                var marker = L.marker([markerData.lat, markerData.lng]).addTo(map);
+                marker.bindPopup('<strong><a href="' + markerData.url + '">' + markerData.title + '</a></strong>');
+            });
+        }
+    });
+    </script>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('business_map', 'shlomi_business_map_shortcode');
