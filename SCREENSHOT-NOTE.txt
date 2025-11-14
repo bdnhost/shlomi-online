@@ -1,0 +1,40 @@
+הערה חשובה: Screenshot חסר
+==================================
+
+תבנית זו דורשת קובץ screenshot.png לפי תקני WordPress.
+
+דרישות Screenshot:
+- שם קובץ: screenshot.png
+- גודל מומלץ: 1200 x 900 פיקסלים
+- פורמט: PNG
+- מיקום: בתיקייה הראשית של התבנית
+
+איך ליצור Screenshot:
+1. פתח את האתר בדפדפן בגודל 1200x900
+2. צלם screenshot של דף הבית
+3. שמור בשם screenshot.png
+4. העלה לתיקיית התבנית
+
+הערה: ללא screenshot, התבנית לא תוצג כראוי ב-WordPress Theme Directory.
+
+תוכן מומלץ ל-Screenshot:
+- Header עם לוגו ותפריט
+- Breaking News Bar
+- כתבה ראשית מודגשת
+- מספר כתבות נוספות
+- Sidebar עם widgets
+
+Screenshot זה יוצג:
+- בעמוד התבניות בממשק הניהול
+- ב-WordPress Theme Directory
+- כתצוגה מקדימה של התבנית
+
+לחלופין, ניתן להשתמש בכלים אונליין כמו:
+- https://www.screenshotmachine.com/
+- https://www.websiteplanet.com/webtools/screenshot/
+
+או בתוספים ל-WordPress כמו:
+- Full Page Screen Capture (Chrome Extension)
+- Awesome Screenshot
+
+אחרי יצירת ה-Screenshot, מחק קובץ זה.
